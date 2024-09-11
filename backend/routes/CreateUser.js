@@ -4,10 +4,10 @@ const { body, validationResult } = require('express-validator')
 const router = express.Router()
 const User = require('../models/User')
 
-const bcrypt = require("bcryptjs")
-const jwt = require("jsonwebtoken")
+const bcrypt = require('bcryptjs')
+const jwt = require('jsonwebtoken')
 
-const jwtSecrete = "Mynameismodassirimrangraduateengineer2024"
+const jwtSecrete = 'Mynameismodassirimrangraduateengineer2024'
 router.post(
   '/createuser',
   [
@@ -20,13 +20,12 @@ router.post(
       .withMessage('Password must be at least 5 characters long')
   ],
   async (req, res) => {
-    
     const errors = validationResult(req)
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() })
     }
-    const salt = await bcrypt.genSalt(10);
-    const secPassword = await bcrypt.hash(req.body.password,salt);
+    const salt = await bcrypt.genSalt(10)
+    const secPassword = await bcrypt.hash(req.body.password, salt)
 
     try {
       const newUser = await User.create({
@@ -47,36 +46,37 @@ router.post(
 router.post(
   '/loginuser',
   [body('email').isEmail().withMessage('Please enter a valid email address')],
-  async (req, res ) => {
+  async (req, res) => {
     const errors = validationResult(req)
-    if (!errors.isEmpty()) {  
+    if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() })
     }
-    let email = req.body.email;
+    let email = req.body.email
 
     try {
-
-      let userData = await User.findOne({email})
+      let userData = await User.findOne({ email })
 
       if (!userData) {
         return res.status(400).json({ errors: 'Enter correct email Id' })
       }
-      const pwdCompare = await bcrypt.compare(req.body.password, userData.password)
+      const pwdCompare = await bcrypt.compare(
+        req.body.password,
+        userData.password
+      )
 
-      if ( !pwdCompare) {
+      if (!pwdCompare) {
         return res.status(400).json({ errors: 'Password is not correct' })
-
       }
 
       const data = {
-        user:{
+        user: {
           id: userData.id
         }
       }
       const authToken = jwt.sign(data, jwtSecrete)
       return res.json({
         success: true,
-        authToken:authToken
+        authToken: authToken
       })
     } catch (error) {
       console.error('Error creating user:', error.message || error)
