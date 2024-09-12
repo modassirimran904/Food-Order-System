@@ -4,7 +4,9 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "build:staging": "env-cmd -f .env.staging npm run build"
+
   },
   "author": "",
   "license": "ISC",
