@@ -1,12 +1,10 @@
 const mongoose = require('mongoose')
 
-const mongoDB_URI =
-  'mongodb+srv://modassirimran904:d0yAvEZ1LNTCsvNY@cluster0.adzks.mongodb.net/foodOrder'
 
 const mongoDB = async () => {
   try {
     // Establish connection to the MongoDB server
-    await mongoose.connect(mongoDB_URI)
+    await mongoose.connect(process.env.MONGODB_URL)
     console.log('DB is Connected')
 
     // Fetch the data from the 'food_item' collection
@@ -14,7 +12,6 @@ const mongoDB = async () => {
       .collection('food_item')
       .find({})
       .toArray()
-
     // Fetch the data from the 'food_category' collection
     const foodCategory = await mongoose.connection.db
       .collection('food_category')

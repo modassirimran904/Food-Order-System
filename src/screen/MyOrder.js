@@ -31,12 +31,12 @@ console.log( "order data afdsfdskf ",orderData)
   }, [])
 console.log("order data aarha hai  ",orderData)
   return (
-    <div>
+    <div className=''>
       <div>
         <Navbar />
       </div>
-      <div className='container'>
-        <div className='row'>
+      <div className='container mb-5'>
+        <div className='row mb-5'>
           {orderData && orderData.length > 0 ? (
             orderData.map((order, index) => {
               return (
@@ -92,7 +92,7 @@ console.log("order data aarha hai  ",orderData)
           )}
         </div>
       </div>
-      <div className='fixed-bottom  '> 
+      <div className='fixed-bottom'> 
         <Footer />
       </div>
     </div>

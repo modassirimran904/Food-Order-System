@@ -2,13 +2,15 @@ const express = require('express')
 
 const cors = require('cors')
 const app = express()
+const dotenv = require('dotenv');
+dotenv.config();
 
 app.use(cors())
 
-const port = 5000
-
 const mongoDB = require('./database')
 mongoDB()
+
+const port = process.env.PORT || 6000
 
 // Corrected Middleware for CORS
 app.use((req, res, next) => {
