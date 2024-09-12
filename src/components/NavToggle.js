@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import menu from '../assets/Images/menu_icon.png'
 import '../index.css' // Assuming you place the CSS in an external file
 import { Badge } from 'react-bootstrap'
