@@ -3,6 +3,7 @@ import { useDispatchCart, useCart } from './ContextReducer'
 
 export default function Card (props) {
   let data = useCart()
+
   let dispatch = useDispatchCart()
   let options = props.options
   let priceOptions = Object.keys(options)
@@ -26,6 +27,7 @@ export default function Card (props) {
       await dispatch({
         type: 'UPDATE',
         id: props.foodItem._id,
+        img:props.foodItem.img,
         name: props.foodItem.name,
         price: finalPrice,
         qty: qty,
@@ -35,6 +37,7 @@ export default function Card (props) {
       await dispatch({
         type: 'ADD',
         id: props.foodItem._id,
+        img:props.foodItem.img,
         name: props.foodItem.name,
         price: finalPrice,
         qty: qty,

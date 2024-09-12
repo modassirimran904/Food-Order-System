@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import Footer from '../components/Footer'
 import Navbar from '../components/Navbar'
+import { Link } from 'react-router-dom'
 
 export default function MyOrder () {
   const [orderData, setOrderData] = useState("")
-
+console.log( "order data afdsfdskf ",orderData)
   const fetchMyOrder = async () => {
     await fetch('http://localhost:5000/api/myOrderData', {
       method: 'POST',
@@ -13,6 +14,7 @@ export default function MyOrder () {
       },
       body: JSON.stringify({
         email: localStorage.getItem('userEmail')
+
       })
     })
       .then(async res => {
@@ -27,7 +29,7 @@ export default function MyOrder () {
   useEffect(() => {
     fetchMyOrder()
   }, [])
-
+console.log("order data aarha hai  ",orderData)
   return (
     <div>
       <div>
@@ -54,7 +56,7 @@ export default function MyOrder () {
                             maxHeight: '360px'
                           }}
                         >
-                          {/* <img
+                          <img
                             src={items.img}
                             className='card-img-top'
                             alt={items.name}
@@ -62,7 +64,7 @@ export default function MyOrder () {
                               height: '120px',
                               objectFit: 'fill'
                             }}
-                          /> */}
+                          />
                           <div className='card-body'>
                             <h5 className='card-title'>{items.name}</h5>
                             <div className='container w-100 p-0'>
@@ -81,11 +83,16 @@ export default function MyOrder () {
               )
             })
           ) : (
-            <div>Loading your orders...</div>
+            <div className=' d-flex justify-content-center mt-5 container '>
+              <Link
+               className='btn bg-success roundedrem navbar-brand fs-3 ' to='/'>
+            Go Order
+          </Link>
+            </div>
           )}
         </div>
       </div>
-      <div className='fixed-bottom'> 
+      <div className='fixed-bottom  '> 
         <Footer />
       </div>
     </div>

@@ -4,6 +4,7 @@ const CartStateContext = createContext()
 const CartDispatchContext = createContext()
 
 const reducer = (state, action) => {
+  console.log(" context state",  state)
   switch (action.type) {
     case 'ADD':
       return [

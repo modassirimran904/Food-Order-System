@@ -25,8 +25,7 @@ const mongoDB = async () => {
     global.fetched_data = fetched_data
     global.foodCategory = foodCategory
 
-    // console.log(global.fetched_data);
-    // console.log(global.foodCategory);
+    
   } catch (err) {
     // Handle any errors that occur during the connection or data fetching
     console.error('---', err)

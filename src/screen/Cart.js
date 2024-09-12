@@ -4,6 +4,9 @@ import { useCart, useDispatchCart } from '../components/ContextReducer'
 
 export default function Cart () {
   let data = useCart()
+
+  console.log("cart data is ",  data)
+  
   let dispatch = useDispatchCart()  
 
   if (data.length === 0) {
@@ -85,7 +88,7 @@ export default function Cart () {
         </table>
         <div className='fs-2'>Total Price: {totalPrice}/-</div>
         <div>
-          <button className='btn bg-success mt-5 px-4' onClick={handleCheckout}>
+          <button className='btn bg-success mt-5 px-4 ' onClick={handleCheckout}>
             Check Out
           </button>
         </div>
