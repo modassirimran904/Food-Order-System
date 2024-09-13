@@ -7,7 +7,7 @@
 
   app.use(cors(
     {
-      origin:['https://food-order-system-six.vercel.app'],
+      origin:['https://food-order-system-cfu2.vercel.app'],
       method:['POST','GET'],
       credential:true
     }
