@@ -5,7 +5,8 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
-    "build:staging": "env-cmd -f .env.staging npm run build"
+    "build:staging": "env-cmd -f .env.staging npm run build",
+    "build": "next build"
   },
   "author": "",
   "license": "ISC",
