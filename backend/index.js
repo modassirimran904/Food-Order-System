@@ -5,12 +5,22 @@ const app = express()
 const dotenv = require('dotenv');
 dotenv.config();
 
-app.use(cors())
+app.use(cors(
+  {
+    origin:[],
+    method:['POST','GET'],
+    credential:true
+  }
+))
 
 const mongoDB = require('./database')
 mongoDB()
 
 const port = process.env.PORT || 6000
+
+app.get('/', (req, res) => {
+  res.send('Hello World!')
+})
 
 // Corrected Middleware for CORS
 app.use((req, res, next) => {
@@ -28,9 +38,7 @@ app.use('/api', require('./routes/DisplayData'))
 app.use('/api', require('./routes/OrdersData'))
 app.use('/api', require('./routes/MyOrderData'))
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
+
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
